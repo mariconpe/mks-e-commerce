@@ -1,30 +1,19 @@
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import type { AppProps } from 'next/app';
+import { DefaultTheme, ThemeProvider } from 'styled-components';
+import GlobalStyle from '../components/globalstyles';
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-`;
-
-interface ThemeInterface {
+const theme: DefaultTheme = {
   colors: {
-    primary: string;
-  };
-}
-
-const theme: ThemeInterface = {
-  colors: {
-    primary: '#0070f3',
+    primary: '#111',
+    secondary: '#0070f3',
   },
 };
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <GlobalStyle />
       <ThemeProvider theme={theme}>
+        <GlobalStyle />
         <Component {...pageProps} />
       </ThemeProvider>
     </>
